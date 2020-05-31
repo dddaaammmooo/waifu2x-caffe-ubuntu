@@ -447,16 +447,16 @@ int main(int argc, char** argv)
 	switch (ret)
 	{
 	case Waifu2x::eWaifu2xError_InvalidParameter:
-		tprintf("eWaifu2xError_InvalidParameter\n");
+		printf("eWaifu2xError_InvalidParameter\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedOpenModelFile:
-		tprintf("eWaifu2xError_FailedOpenModelFile\n");
+		printf("eWaifu2xError_FailedOpenModelFile\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedParseModelFile:
-		tprintf("eWaifu2xError_FailedParseModelFile\n");
+		printf("eWaifu2xError_FailedParseModelFile\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedConstructModel:
-		tprintf("eWaifu2xError_FailedConstructModel\n");
+		printf("eWaifu2xError_FailedConstructModel\n");
 		return 1;
 	}
 
@@ -471,16 +471,16 @@ int main(int argc, char** argv)
 			switch (ret)
 			{
 			case Waifu2x::eWaifu2xError_InvalidParameter:
-				tprintf("eWaifu2xError_InvalidParameter\n");
+				printf("eWaifu2xError_InvalidParameter\n");
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenInputFile:
-				tprintf("eWaifu2xError_FailedOpenInputFile\n", p.first.c_str());
+				printf("eWaifu2xError_FailedOpenInputFile\n", p.first.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenOutputFile:
-				tprintf("eWaifu2xError_FailedOpenOutputFile\n", p.second.c_str());
+				printf("eWaifu2xError_FailedOpenOutputFile\n", p.second.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedProcessCaffe:
-				tprintf("eWaifu2xError_FailedProcessCaffe\n");
+				printf("eWaifu2xError_FailedProcessCaffe\n");
 				break;
 			}
 
@@ -490,7 +490,7 @@ int main(int argc, char** argv)
 
 	if (isError)
 	{
-		tprintf("isError\n");
+		printf("isError\n");
 		return 1;
 	}
 
