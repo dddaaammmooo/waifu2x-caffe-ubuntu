@@ -456,7 +456,7 @@ int main(int argc, char** argv)
 		tprintf(TEXT("�G���[: ���f���t�@�C�������Ă��܂�\n"));
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedConstructModel:
-		tprintf(TEXT("�G���[: �l�b�g���[�N�̍\�z�Ɏ��s���܂���\n"));
+		tprintf(TEXT("�G���[:\n"));
 		return 1;
 	}
 
