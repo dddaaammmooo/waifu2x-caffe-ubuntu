@@ -29,7 +29,7 @@
 
 #define CV_VERSION_STR CVAUX_STR(CV_MAJOR_VERSION) CVAUX_STR(CV_MINOR_VERSION) CVAUX_STR(CV_SUBMINOR_VERSION)
 
-// ƒrƒ‹ƒhƒ‚[ƒh
+// ï¿½rï¿½ï¿½ï¿½hï¿½ï¿½ï¿½[ï¿½h
 #ifdef _DEBUG
 #define CV_EXT_STR "d.lib"
 #else
@@ -82,12 +82,12 @@
 #endif
 #endif
 
-const int ScaleBase = 2; // TODO: ƒ‚ƒfƒ‹‚ÌŠg‘å—¦‚É‚æ‚Á‚Ä‰Â•Ï‚Å‚«‚é‚æ‚¤‚É‚·‚é
+const int ScaleBase = 2; // TODO: ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ÌŠgï¿½å—¦ï¿½É‚ï¿½ï¿½ï¿½Ä‰Â•Ï‚Å‚ï¿½ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 
-// “ü—Í‰æ‘œ‚É’Ç‰Á‚·‚éƒpƒfƒBƒ“ƒO
+// ï¿½ï¿½ï¿½Í‰æ‘œï¿½É’Ç‰ï¿½ï¿½ï¿½ï¿½ï¿½pï¿½fï¿½Bï¿½ï¿½ï¿½O
 const int OuterPadding = 0;
 
-// Å’áŒÀ•K—v‚ÈCUDAƒhƒ‰ƒCƒo[‚Ìƒo[ƒWƒ‡ƒ“
+// ï¿½Å’ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½CUDAï¿½hï¿½ï¿½ï¿½Cï¿½oï¿½[ï¿½Ìƒoï¿½[ï¿½Wï¿½ï¿½ï¿½ï¿½
 const int MinCudaDriverVersion = 7050;
 
 static std::once_flag waifu2x_once_flag;
@@ -413,7 +413,7 @@ CcuDNNAlgorithm g_ConvCcuDNNAlgorithm;
 CcuDNNAlgorithm g_DeconvCcuDNNAlgorithm;
 
 
-// CUDA‚ªg‚¦‚é‚©ƒ`ƒFƒbƒN
+// CUDAï¿½ï¿½ï¿½gï¿½ï¿½ï¿½é‚©ï¿½`ï¿½Fï¿½bï¿½N
 Waifu2x::eWaifu2xCudaError Waifu2x::can_use_CUDA()
 {
 	static eWaifu2xCudaError CudaFlag = eWaifu2xCudaError_NotFind;
@@ -452,7 +452,7 @@ Waifu2x::eWaifu2xCudaError Waifu2x::can_use_CUDA()
 	return CudaFlag;
 }
 
-// cuDNN‚ªg‚¦‚é‚©ƒ`ƒFƒbƒNBŒ»óWindows‚Ì‚İ
+// cuDNNï¿½ï¿½ï¿½gï¿½ï¿½ï¿½é‚©ï¿½`ï¿½Fï¿½bï¿½Nï¿½Bï¿½ï¿½ï¿½ï¿½Windowsï¿½Ì‚ï¿½
 Waifu2x::eWaifu2xcuDNNError Waifu2x::can_use_cuDNN()
 {
 	static eWaifu2xcuDNNError cuDNNFlag = eWaifu2xcuDNNError_NotFind;
@@ -510,7 +510,7 @@ void Waifu2x::init_liblary(int argc, char** argv)
 		int tmpargc = 1;
 		char* tmpargvv[] = {argv[0]};
 		char** tmpargv = tmpargvv;
-		// glog“™‚Ì‰Šú‰»
+		// glogï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½
 		caffe::GlobalInit(&tmpargc, &tmpargv);
 	});
 }
@@ -553,7 +553,7 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 		{
 			if (can_use_CUDA() != eWaifu2xCudaError_OK)
 				return Waifu2x::eWaifu2xError_FailedCudaCheck;
-			// cuDNN‚ªg‚¦‚»‚¤‚È‚çcuDNN‚ğg‚¤
+			// cuDNNï¿½ï¿½ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½cuDNNï¿½ï¿½ï¿½gï¿½ï¿½
 			else if (can_use_cuDNN() == eWaifu2xcuDNNError_OK)
 				Process = "cudnn";
 		}
@@ -567,7 +567,7 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 
 		if (Process == "cudnn")
 		{
-			// exe‚ÌƒfƒBƒŒƒNƒgƒŠ‚ÉcuDNN‚ÌƒAƒ‹ƒSƒŠƒYƒ€ƒf[ƒ^•Û‘¶
+			// exeï¿½Ìƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½cuDNNï¿½ÌƒAï¿½ï¿½ï¿½Sï¿½ï¿½ï¿½Yï¿½ï¿½ï¿½fï¿½[ï¿½^ï¿½Û‘ï¿½
 			boost::filesystem::path cudnn_data_base_dir_path(ExeDir);
 			if (cudnn_data_base_dir_path.is_relative())
 				cudnn_data_base_dir_path = boost::filesystem::system_complete(cudnn_data_base_dir_path);
@@ -577,7 +577,7 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 
 			if (!boost::filesystem::exists(cudnn_data_base_dir_path))
 			{
-				// exe‚ÌƒfƒBƒŒƒNƒgƒŠ‚ªæ“¾‚Å‚«‚È‚¯‚ê‚ÎƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‚É•Û‘¶
+				// exeï¿½Ìƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½æ“¾ï¿½Å‚ï¿½ï¿½È‚ï¿½ï¿½ï¿½ÎƒJï¿½ï¿½ï¿½ï¿½ï¿½gï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½É•Û‘ï¿½
 
 				cudnn_data_base_dir_path = boost::filesystem::current_path();
 
@@ -658,7 +658,7 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 		mHasNoiseScaleOnly = info.has_noise_scale;
 		mInputPlane = info.channels;
 
-		if (mode == eWaifu2xModelTypeNoise && info.has_noise_only) // ƒmƒCƒYœ‹‚¾‚¯‚©‚ÂƒmƒCƒYœ‹ƒ‚ƒfƒ‹‚ª‘¶İ‚·‚é‚Ì‚Å‚ ‚ê‚ÎƒmƒCƒYœ‹ƒXƒP[ƒ‹ƒ‚ƒfƒ‹‚Íg‚í‚È‚¢‚æ‚¤‚É‚·‚é
+		if (mode == eWaifu2xModelTypeNoise && info.has_noise_only) // ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Âƒmï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½ï¿½ï¿½Ì‚Å‚ï¿½ï¿½ï¿½Îƒmï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Pï¿½[ï¿½ï¿½ï¿½ï¿½ï¿½fï¿½ï¿½ï¿½Ígï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 			mHasNoiseScaleOnly = false;
 
 		if (mode == eWaifu2xModelTypeNoise || mode == eWaifu2xModelTypeNoiseScale || mode == eWaifu2xModelTypeAutoScale)
@@ -668,13 +668,13 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 			mNoiseNet.reset(new cNet);
 
 			eWaifu2xModelType Mode = mode;
-			if (mHasNoiseScaleOnly) // ƒmƒCƒYœ‹‚ÆŠg‘å‚ğ“¯‚És‚¤
+			if (mHasNoiseScaleOnly) // ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ÆŠgï¿½ï¿½ğ“¯ï¿½ï¿½Ésï¿½ï¿½
 			{
-				// ƒmƒCƒYœ‹Šg‘åƒlƒbƒg‚Ì\’z‚ÍeWaifu2xModelTypeNoiseScale‚ğw’è‚·‚é•K—v‚ª‚ ‚é
+				// ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½gï¿½ï¿½lï¿½bï¿½gï¿½Ì\ï¿½zï¿½ï¿½eWaifu2xModelTypeNoiseScaleï¿½ï¿½ï¿½wï¿½è‚·ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				Mode = eWaifu2xModelTypeNoiseScale;
 				base_name = "noise" + std::to_string(noise_level) + "_scale2.0x_model";
 			}
-			else // ƒmƒCƒYœ‹‚¾‚¯
+			else // ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			{
 				Mode = eWaifu2xModelTypeNoise;
 				base_name = "noise" + std::to_string(noise_level) + "_model";
@@ -690,7 +690,7 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 			mMaxNetOffset = mNoiseNet->GetNetOffset();
 		}
 
-		// Šg‘å‚ª•K—v‚Èê‡‚Íƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚ÌŠg‘å‚Ì‚½‚ß‚ÉmScaleNet‚à\’z‚·‚é•K—v‚ª‚ ‚é
+		// ï¿½gï¿½å‚ªï¿½Kï¿½vï¿½Èê‡ï¿½Íƒï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½ÌŠgï¿½ï¿½Ì‚ï¿½ï¿½ß‚ï¿½mScaleNetï¿½ï¿½ï¿½\ï¿½zï¿½ï¿½ï¿½ï¿½Kï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if (mode == eWaifu2xModelTypeScale || mode == eWaifu2xModelTypeNoiseScale || mode == eWaifu2xModelTypeAutoScale)
 		{
 			const std::string base_name = "scale2.0x_model";
@@ -726,11 +726,11 @@ Waifu2x::eWaifu2xError Waifu2x::Init(const eWaifu2xModelType mode, const int noi
 boost::filesystem::path Waifu2x::GetModeDirPath(const boost::filesystem::path &model_dir)
 {
 	boost::filesystem::path mode_dir_path(model_dir);
-	if (!mode_dir_path.is_absolute()) // model_dir‚ª‘Š‘ÎƒpƒX‚È‚çâ‘ÎƒpƒX‚É’¼‚·
+	if (!mode_dir_path.is_absolute()) // model_dirï¿½ï¿½ï¿½ï¿½ï¿½Îƒpï¿½Xï¿½È‚ï¿½ï¿½Îƒpï¿½Xï¿½É’ï¿½ï¿½ï¿½
 	{
-		// ‚Ü‚¸‚ÍƒJƒŒƒ“ƒgƒfƒBƒŒƒNƒgƒŠ‰º‚É‚ ‚é‚©’T‚·
+		// ï¿½Ü‚ï¿½ï¿½ÍƒJï¿½ï¿½ï¿½ï¿½ï¿½gï¿½fï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½é‚©ï¿½Tï¿½ï¿½
 		mode_dir_path = boost::filesystem::absolute(model_dir);
-		if (!boost::filesystem::exists(mode_dir_path) && !ExeDir.empty()) // –³‚©‚Á‚½‚çargv[0]‚©‚çÀsƒtƒ@ƒCƒ‹‚Ì‚ ‚éƒtƒHƒ‹ƒ_‚ğ„’è‚µA‚»‚ÌƒtƒHƒ‹ƒ_‰º‚É‚ ‚é‚©’T‚·
+		if (!boost::filesystem::exists(mode_dir_path) && !ExeDir.empty()) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½argv[0]ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Ì‚ï¿½ï¿½ï¿½tï¿½Hï¿½ï¿½ï¿½_ï¿½ğ„’è‚µï¿½Aï¿½ï¿½ï¿½Ìƒtï¿½Hï¿½ï¿½ï¿½_ï¿½ï¿½ï¿½É‚ï¿½ï¿½é‚©ï¿½Tï¿½ï¿½
 		{
 			boost::filesystem::path a0(ExeDir);
 			if (a0.is_absolute())
@@ -802,13 +802,13 @@ Waifu2x::eWaifu2xError Waifu2x::waifu2x(const double factor, const void* source,
 
 	int cvrSetting = -1;
 	if (in_channel == 3 && out_channel == 3)
-		cvrSetting = CV_BGR2RGB;
+		cvrSetting = cv::COLOR_BGR2RGB;
 	else if (in_channel == 4 && out_channel == 4)
-		cvrSetting = CV_BGRA2RGBA;
+		cvrSetting = cv::COLOR_BGRA2RGBA;
 	else if (in_channel == 3 && out_channel == 4)
-		cvrSetting = CV_BGR2RGBA;
+		cvrSetting = cv::COLOR_BGR2RGBA;
 	else if (in_channel == 4 && out_channel == 3)
-		cvrSetting = CV_BGRA2RGB;
+		cvrSetting = cv::COLOR_BGRA2RGB;
 	else if (!(in_channel == 1 && out_channel == 1))
 		return Waifu2x::eWaifu2xError_InvalidParameter;
 
@@ -838,12 +838,12 @@ Waifu2x::eWaifu2xError Waifu2x::waifu2x(const double factor, const void* source,
 
 	cv::Mat out_image;
 	if (cvrSetting >= 0)
-		cv::cvtColor(out_bgr_image, out_image, cvrSetting); // BGR‚©‚çRGB‚É–ß‚·
+		cv::cvtColor(out_bgr_image, out_image, cvrSetting); // BGRï¿½ï¿½ï¿½ï¿½RGBï¿½É–ß‚ï¿½
 	else
 		out_image = out_bgr_image;
 	out_bgr_image.release();
 
-	// o—Í”z—ñ‚Ö‘‚«‚İ
+	// ï¿½oï¿½Í”zï¿½ï¿½Öï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	{
 		const auto width = out_image.size().width;
 		const auto stride = out_image.step1();
@@ -880,7 +880,7 @@ Factor Waifu2x::CalcScaleRatio(const boost::optional<double> scale_ratio, const 
 int Waifu2x::GetcuDNNAlgorithm(const char * layer_name, int num_input, int num_output, int batch_size,
 	int width, int height, int kernel_w, int kernel_h, int pad_w, int pad_h, int stride_w, int stride_h)
 {
-	// g_ConvCcuDNNAlgorithm‚Æg_DeconvCcuDNNAlgorithm‚ª‹t‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚ªAƒtƒ@ƒCƒ‹–¼‚É‚µ‚©‰e‹¿‚ª‚È‚¢‚Ì‚ÆŒİŠ·«‚ª‚È‚­‚È‚é‚Ì‚Å‚±‚Ì‚Ü‚Üd—l‚Æ‚·‚é
+	// g_ConvCcuDNNAlgorithmï¿½ï¿½g_DeconvCcuDNNAlgorithmï¿½ï¿½ï¿½tï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚ªï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÆŒİŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½Ì‚Å‚ï¿½ï¿½Ì‚Ü‚Üdï¿½lï¿½Æ‚ï¿½ï¿½ï¿½
 	if (strcmp(layer_name, "Deconvolution") == 0)
 		return g_ConvCcuDNNAlgorithm.GetAlgorithm(num_input, num_output, batch_size, width, height, kernel_w, kernel_h, pad_w, pad_h, stride_w, stride_h);
 	else if (strcmp(layer_name, "Convolution") == 0)
@@ -892,7 +892,7 @@ int Waifu2x::GetcuDNNAlgorithm(const char * layer_name, int num_input, int num_o
 void Waifu2x::SetcuDNNAlgorithm(int algo, const char * layer_name, int num_input, int num_output, int batch_size,
 	int width, int height, int kernel_w, int kernel_h, int pad_w, int pad_h, int stride_w, int stride_h)
 {
-	// g_ConvCcuDNNAlgorithm‚Æg_DeconvCcuDNNAlgorithm‚ª‹t‚É‚È‚Á‚Ä‚µ‚Ü‚Á‚Ä‚¢‚é‚ªAƒtƒ@ƒCƒ‹–¼‚É‚µ‚©‰e‹¿‚ª‚È‚¢‚Ì‚ÆŒİŠ·«‚ª‚È‚­‚È‚é‚Ì‚Å‚±‚Ì‚Ü‚Üd—l‚Æ‚·‚é
+	// g_ConvCcuDNNAlgorithmï¿½ï¿½g_DeconvCcuDNNAlgorithmï¿½ï¿½ï¿½tï¿½É‚È‚ï¿½ï¿½Ä‚ï¿½ï¿½Ü‚ï¿½ï¿½Ä‚ï¿½ï¿½é‚ªï¿½Aï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½ï¿½eï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½Ì‚ÆŒİŠï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½È‚ï¿½Ì‚Å‚ï¿½ï¿½Ì‚Ü‚Üdï¿½lï¿½Æ‚ï¿½ï¿½ï¿½
 	if (strcmp(layer_name, "Deconvolution") == 0)
 		return g_ConvCcuDNNAlgorithm.SetAlgorithm(algo, num_input, num_output, batch_size, width, height, kernel_w, kernel_h, pad_w, pad_h, stride_w, stride_h);
 	else if (strcmp(layer_name, "Convolution") == 0)
@@ -908,7 +908,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructImage(const Factor factor, const int 
 
 	if (isReconstructNoise)
 	{
-		if (!mHasNoiseScaleOnly) // ƒmƒCƒYœ‹‚¾‚¯
+		if (!mHasNoiseScaleOnly) // ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		{
 			cv::Mat im;
 			cv::Size_<int> size;
@@ -920,7 +920,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructImage(const Factor factor, const int 
 
 			image.SetReconstructedRGB(im, size, 1);
 		}
-		else // ƒmƒCƒYœ‹‚ÆŠg‘å
+		else // ï¿½mï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ÆŠgï¿½ï¿½
 		{
 			ret = ReconstructNoiseScale(crop_w, crop_h, use_tta, batch_size, cancel_func, image);
 			if (ret != Waifu2x::eWaifu2xError_OK)
@@ -987,7 +987,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructNoiseScale(const int crop_w, const in
 
 	if (image.HasAlpha())
 	{
-		// ƒ¿ƒ`ƒƒƒ“ƒlƒ‹‚É‚ÍƒmƒCƒYœ‹‚ğs‚í‚È‚¢
+		// ï¿½ï¿½ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ï¿½ï¿½É‚Íƒmï¿½Cï¿½Yï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½È‚ï¿½
 
 		cv::Mat im;
 		cv::Size_<int> size;
@@ -1019,7 +1019,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructByNet(std::shared_ptr<cNet> net, cons
 {
 	Waifu2x::eWaifu2xError ret;
 
-	if (!use_tta) // •’Ê‚Éˆ—
+	if (!use_tta) // ï¿½ï¿½ï¿½Ê‚Éï¿½ï¿½ï¿½
 	{
 		ret = ProcessNet(net, crop_w, crop_h, use_tta, batch_size, im);
 		if (ret != Waifu2x::eWaifu2xError_OK)
@@ -1060,7 +1060,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructByNet(std::shared_ptr<cNet> net, cons
 			RotateClockwise90N(in, rotateNum);
 
 			if (i >= 4)
-				cv::flip(in, in, 1); // ‚’¼²”½“]
+				cv::flip(in, in, 1); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]
 
 			const int cw = (rotateNum % 2 == 0) ? crop_w : crop_h;
 			const int ch = (rotateNum % 2 == 0) ? crop_h : crop_w;
@@ -1070,7 +1070,7 @@ Waifu2x::eWaifu2xError Waifu2x::ReconstructByNet(std::shared_ptr<cNet> net, cons
 				return ret;
 
 			if (i >= 4)
-				cv::flip(in, in, 1); // ‚’¼²”½“]
+				cv::flip(in, in, 1); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]
 
 			RotateCounterclockwise90N(in, rotateNum);
 
