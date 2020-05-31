@@ -99,11 +99,11 @@ int main(int argc, char** argv)
 
 	Waifu2x::init_liblary(argc, argv);
 
-	// Caffe‚ÌƒGƒ‰[‚Å‚È‚¢ƒƒO‚ğ•Û‘¶‚µ‚È‚¢‚æ‚¤‚É‚·‚é
+	// Caffeï¿½ÌƒGï¿½ï¿½ï¿½[ï¿½Å‚È‚ï¿½ï¿½ï¿½ï¿½Oï¿½ï¿½Û‘ï¿½ï¿½ï¿½ï¿½È‚ï¿½ï¿½æ‚¤ï¿½É‚ï¿½ï¿½ï¿½
 	google::SetLogDestination(google::GLOG_INFO, "");
 	google::SetLogDestination(google::GLOG_WARNING, "");
 
-	// Caffe‚ÌƒGƒ‰[ƒƒO‚ğuerror_log_`v‚Éo—Í
+	// Caffeï¿½ÌƒGï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½uerror_log_ï¿½`ï¿½vï¿½Éoï¿½ï¿½
 	google::SetLogDestination(google::GLOG_ERROR, "error_log_");
 	google::SetLogDestination(google::GLOG_FATAL, "error_log_");
 
@@ -218,7 +218,7 @@ int main(int argc, char** argv)
 	}
 	catch (std::exception &e)
 	{
-		tprintf(TEXT("ƒGƒ‰[: ") CHAR_STR_FORMAT TEXT("\n"), e.what());
+		tprintf(TEXT("ï¿½Gï¿½ï¿½ï¿½[: ") CHAR_STR_FORMAT TEXT("\n"), e.what());
 		return 1;
 	}
 
@@ -265,13 +265,13 @@ int main(int argc, char** argv)
 	const bool use_tta = cmdTTALevel.getValue() == 1;
 
 	std::vector<std::pair<tstring, tstring>> file_paths;
-	if (boost::filesystem::is_directory(input_path)) // input_path‚ªƒtƒHƒ‹ƒ_‚È‚ç‚»‚ÌƒfƒBƒŒƒNƒgƒŠˆÈ‰º‚Ì‰æ‘œƒtƒ@ƒCƒ‹‚ğˆêŠ‡•ÏŠ·
+	if (boost::filesystem::is_directory(input_path)) // input_pathï¿½ï¿½ï¿½tï¿½Hï¿½ï¿½ï¿½_ï¿½È‚ç‚»ï¿½Ìƒfï¿½Bï¿½ï¿½ï¿½Nï¿½gï¿½ï¿½ï¿½È‰ï¿½ï¿½Ì‰æ‘œï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½ï¿½ï¿½êŠ‡ï¿½ÏŠï¿½
 	{
 		boost::filesystem::path output_path;
 
 		if (cmdOutputFile.getValue() == TEXT("(auto)"))
 		{
-			// utestv‚È‚çutest_noise_scale(Level1)(x2.000000)v‚İ‚½‚¢‚ÈŠ´‚¶‚É‚·‚é
+			// ï¿½utestï¿½vï¿½È‚ï¿½utest_noise_scale(Level1)(x2.000000)ï¿½vï¿½İ‚ï¿½ï¿½ï¿½ï¿½ÈŠï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
 
 			tstring addstr(TEXT("("));
 			addstr += tModelName;
@@ -312,14 +312,14 @@ int main(int argc, char** argv)
 		{
 			if (!boost::filesystem::create_directory(output_path))
 			{
-				tprintf(TEXT("ƒGƒ‰[: o—ÍƒtƒHƒ‹ƒ_u%sv‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n"), path_to_tstring(output_path).c_str());
+				tprintf(TEXT("ï¿½Gï¿½ï¿½ï¿½[: ï¿½oï¿½Íƒtï¿½Hï¿½ï¿½ï¿½_ï¿½u%sï¿½vï¿½Ìì¬ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n"), path_to_tstring(output_path).c_str());
 				return 1;
 			}
 		}
 
 		std::vector<tstring> extList;
 		{
-			// input_extention_list‚ğ•¶š—ñ‚Ì”z—ñ‚É‚·‚é
+			// input_extention_listï¿½ğ•¶ï¿½ï¿½ï¿½Ì”zï¿½ï¿½É‚ï¿½ï¿½ï¿½
 
 			typedef boost::char_separator<TCHAR> char_separator;
 			typedef boost::tokenizer<char_separator, tstring::const_iterator, tstring> tokenizer;
@@ -335,7 +335,7 @@ int main(int argc, char** argv)
 			}
 		}
 
-		// •ÏŠ·‚·‚é‰æ‘œ‚Ì“ü—ÍAo—ÍƒpƒX‚ğæ“¾
+		// ï¿½ÏŠï¿½ï¿½ï¿½ï¿½ï¿½æ‘œï¿½Ì“ï¿½ï¿½ÍAï¿½oï¿½Íƒpï¿½Xï¿½ï¿½ï¿½æ“¾
 		const auto func = [&extList, &input_path, &output_path, &outputExt, &file_paths](const boost::filesystem::path &path)
 		{
 			BOOST_FOREACH(const boost::filesystem::path& p, std::make_pair(boost::filesystem::recursive_directory_iterator(path),
@@ -350,7 +350,7 @@ int main(int argc, char** argv)
 					{
 						if (!boost::filesystem::create_directory(out_absolute))
 						{
-							tprintf(TEXT("ƒGƒ‰[: o—ÍƒtƒHƒ‹ƒ_u%sv‚Ìì¬‚É¸”s‚µ‚Ü‚µ‚½\n"), path_to_tstring(out_absolute).c_str());
+							tprintf(TEXT("ï¿½Gï¿½ï¿½ï¿½[: ï¿½oï¿½Íƒtï¿½Hï¿½ï¿½ï¿½_ï¿½u%sï¿½vï¿½Ìì¬ï¿½Éï¿½ï¿½sï¿½ï¿½ï¿½Ü‚ï¿½ï¿½ï¿½\n"), path_to_tstring(out_absolute).c_str());
 							return false;
 						}
 					}
@@ -383,7 +383,7 @@ int main(int argc, char** argv)
 
 		if (outputFileName == TEXT("(auto)"))
 		{
-			// umiku_small.pngv‚È‚çumiku_small(noise_scale)(Level1)(x2.000000).pngv‚İ‚½‚¢‚ÈŠ´‚¶‚É‚·‚é
+			// ï¿½umiku_small.pngï¿½vï¿½È‚ï¿½umiku_small(noise_scale)(Level1)(x2.000000).pngï¿½vï¿½İ‚ï¿½ï¿½ï¿½ï¿½ÈŠï¿½ï¿½ï¿½ï¿½É‚ï¿½ï¿½ï¿½
 
 			outputFileName = cmdInputFile.getValue();
 			const auto tailDot = outputFileName.find_last_of('.');
@@ -447,16 +447,16 @@ int main(int argc, char** argv)
 	switch (ret)
 	{
 	case Waifu2x::eWaifu2xError_InvalidParameter:
-		tprintf(TEXT("ƒGƒ‰[: ƒpƒ‰ƒ[ƒ^‚ª•s³‚Å‚·\n"));
+		tprintf(TEXT("eWaifu2xError_InvalidParameter\n"));
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedOpenModelFile:
-		tprintf(TEXT("ƒGƒ‰[: ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n"));
+		tprintf(TEXT("eWaifu2xError_FailedOpenModelFile\n"));
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedParseModelFile:
-		tprintf(TEXT("ƒGƒ‰[: ƒ‚ƒfƒ‹ƒtƒ@ƒCƒ‹‚ª‰ó‚ê‚Ä‚¢‚Ü‚·\n"));
+		tprintf(TEXT("eWaifu2xError_FailedParseModelFile\n"));
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedConstructModel:
-		tprintf(TEXT("ƒGƒ‰[: ƒlƒbƒgƒ[ƒN‚Ì\’z‚É¸”s‚µ‚Ü‚µ‚½\n"));
+		tprintf(TEXT("eWaifu2xError_FailedConstructModel\n"));
 		return 1;
 	}
 
@@ -471,16 +471,16 @@ int main(int argc, char** argv)
 			switch (ret)
 			{
 			case Waifu2x::eWaifu2xError_InvalidParameter:
-				tprintf(TEXT("ƒGƒ‰[: ƒpƒ‰ƒ[ƒ^‚ª•s³‚Å‚·\n"));
+				tprintf(TEXT("eWaifu2xError_InvalidParameter\n"));
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenInputFile:
-				tprintf(TEXT("ƒGƒ‰[: “ü—Í‰æ‘œu%sv‚ªŠJ‚¯‚Ü‚¹‚ñ‚Å‚µ‚½\n"), p.first.c_str());
+				tprintf(TEXT("eWaifu2xError_FailedOpenInputFile\n"), p.first.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenOutputFile:
-				tprintf(TEXT("ƒGƒ‰[: o—Í‰æ‘œu%sv‚ª‘‚«‚ß‚Ü‚¹‚ñ‚Å‚µ‚½\n"), p.second.c_str());
+				tprintf(TEXT("eWaifu2xError_FailedOpenOutputFile\n"), p.second.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedProcessCaffe:
-				tprintf(TEXT("ƒGƒ‰[: •âŠÔˆ—‚É¸”s‚µ‚Ü‚µ‚½\n"));
+				tprintf(TEXT("eWaifu2xError_FailedProcessCaffe\n"));
 				break;
 			}
 
@@ -490,11 +490,11 @@ int main(int argc, char** argv)
 
 	if (isError)
 	{
-		tprintf(TEXT("•ÏŠ·‚É¸”s‚µ‚½ƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚·\n"));
+		tprintf(TEXT("isError\n"));
 		return 1;
 	}
 
-	tprintf(TEXT("•ÏŠ·‚É¬Œ÷‚µ‚Ü‚µ‚½\n"));
+	tprintf(TEXT("ok\n"));
 
 	Waifu2x::quit_liblary();
 
