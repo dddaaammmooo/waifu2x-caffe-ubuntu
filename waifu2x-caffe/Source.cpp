@@ -108,32 +108,32 @@ int main(int argc, char** argv)
 	google::SetLogDestination(google::GLOG_FATAL, "error_log_");
 
 	// definition of command line arguments
-	CmdLine cmd(TEXT("waifu2x reimplementation using Caffe"), ' ', TEXT("1.0.0"));
+	CmdLine cmd("waifu2x reimplementation using Caffe"), ' ', "1.0.0"));
 
-	ValueArg<tstring> cmdInputFile(TEXT("i"), TEXT("input_path"),
-		TEXT("path to input image file"), true, TEXT(""),
-		TEXT("string"), cmd);
+	ValueArg<tstring> cmdInputFile("i"), "input_path"),
+		"path to input image file"), true, ""),
+		"string"), cmd);
 
-	ValueArg<tstring> cmdOutputFile(TEXT("o"), TEXT("output_path"),
-		TEXT("path to output image file (when input_path is folder, output_path must be folder)"), false,
-		TEXT("(auto)"), TEXT("string"), cmd);
+	ValueArg<tstring> cmdOutputFile("o"), "output_path"),
+		"path to output image file (when input_path is folder, output_path must be folder)"), false,
+		"(auto)"), "string"), cmd);
 
-	ValueArg<tstring> cmdInputFileExt(TEXT("l"), TEXT("input_extention_list"),
-		TEXT("extention to input image file when input_path is folder"), false, TEXT("png:jpg:jpeg:tif:tiff:bmp:tga"),
-		TEXT("string"), cmd);
+	ValueArg<tstring> cmdInputFileExt("l"), "input_extention_list"),
+		"extention to input image file when input_path is folder"), false, "png:jpg:jpeg:tif:tiff:bmp:tga"),
+		"string"), cmd);
 
-	ValueArg<tstring> cmdOutputFileExt(TEXT("e"), TEXT("output_extention"),
-		TEXT("extention to output image file when output_path is (auto) or input_path is folder"), false,
-		TEXT("png"), TEXT("string"), cmd);
+	ValueArg<tstring> cmdOutputFileExt("e"), "output_extention"),
+		"extention to output image file when output_path is (auto) or input_path is folder"), false,
+		"png"), "string"), cmd);
 
 	std::vector<tstring> cmdModeConstraintV;
-	cmdModeConstraintV.push_back(TEXT("noise"));
-	cmdModeConstraintV.push_back(TEXT("scale"));
-	cmdModeConstraintV.push_back(TEXT("noise_scale"));
-	cmdModeConstraintV.push_back(TEXT("auto_scale"));
+	cmdModeConstraintV.push_back("noise"));
+	cmdModeConstraintV.push_back("scale"));
+	cmdModeConstraintV.push_back("noise_scale"));
+	cmdModeConstraintV.push_back("auto_scale"));
 	ValuesConstraint<tstring> cmdModeConstraint(cmdModeConstraintV);
-	ValueArg<tstring> cmdMode(TEXT("m"), TEXT("mode"), TEXT("image processing mode"),
-		false, TEXT("noise_scale"), &cmdModeConstraint, cmd);
+	ValueArg<tstring> cmdMode("m"), "mode"), "image processing mode"),
+		false, "noise_scale"), &cmdModeConstraint, cmd);
 
 	std::vector<int> cmdNRLConstraintV;
 	cmdNRLConstraintV.push_back(0);
@@ -141,63 +141,63 @@ int main(int argc, char** argv)
 	cmdNRLConstraintV.push_back(2);
 	cmdNRLConstraintV.push_back(3);
 	ValuesConstraint<int> cmdNRLConstraint(cmdNRLConstraintV);
-	ValueArg<int> cmdNRLevel(TEXT("n"), TEXT("noise_level"), TEXT("noise reduction level"),
+	ValueArg<int> cmdNRLevel("n"), "noise_level"), "noise reduction level"),
 		false, 0, &cmdNRLConstraint, cmd);
 
-	ValueArg<double> cmdScaleRatio(TEXT("s"), TEXT("scale_ratio"),
-		TEXT("custom scale ratio"), false, 2.0, TEXT("double"), cmd);
+	ValueArg<double> cmdScaleRatio("s"), "scale_ratio"),
+		"custom scale ratio"), false, 2.0, "double"), cmd);
 
-	ValueArg<double> cmdScaleWidth(TEXT("w"), TEXT("scale_width"),
-		TEXT("custom scale width"), false, 0, TEXT("double"), cmd);
+	ValueArg<double> cmdScaleWidth("w"), "scale_width"),
+		"custom scale width"), false, 0, "double"), cmd);
 
-	ValueArg<double> cmdScaleHeight(TEXT("h"), TEXT("scale_height"),
-		TEXT("custom scale height"), false, 0, TEXT("double"), cmd);
+	ValueArg<double> cmdScaleHeight("h"), "scale_height"),
+		"custom scale height"), false, 0, "double"), cmd);
 
-	ValueArg<tstring> cmdModelPath(TEXT(""), TEXT("model_dir"),
-		TEXT("path to custom model directory (don't append last / )"), false,
-		TEXT("models/cunet"), TEXT("string"), cmd);
+	ValueArg<tstring> cmdModelPath(""), "model_dir"),
+		"path to custom model directory (don't append last / )"), false,
+		"models/cunet"), "string"), cmd);
 
 	std::vector<tstring> cmdProcessConstraintV;
-	cmdProcessConstraintV.push_back(TEXT("cpu"));
-	cmdProcessConstraintV.push_back(TEXT("gpu"));
-	cmdProcessConstraintV.push_back(TEXT("cudnn"));
+	cmdProcessConstraintV.push_back("cpu"));
+	cmdProcessConstraintV.push_back("gpu"));
+	cmdProcessConstraintV.push_back("cudnn"));
 	ValuesConstraint<tstring> cmdProcessConstraint(cmdProcessConstraintV);
-	ValueArg<tstring> cmdProcess(TEXT("p"), TEXT("process"), TEXT("process mode"),
-		false, TEXT("gpu"), &cmdProcessConstraint, cmd);
+	ValueArg<tstring> cmdProcess("p"), "process"), "process mode"),
+		false, "gpu"), &cmdProcessConstraint, cmd);
 
-	ValueArg<int> cmdOutputQuality(TEXT("q"), TEXT("output_quality"),
-		TEXT("output image quality"), false,
-		-1, TEXT("int"), cmd);
+	ValueArg<int> cmdOutputQuality("q"), "output_quality"),
+		"output image quality"), false,
+		-1, "int"), cmd);
 
-	ValueArg<int> cmdOutputDepth(TEXT("d"), TEXT("output_depth"),
-		TEXT("output image chaneel depth bit"), false,
-		8, TEXT("int"), cmd);
+	ValueArg<int> cmdOutputDepth("d"), "output_depth"),
+		"output image chaneel depth bit"), false,
+		8, "int"), cmd);
 
-	ValueArg<int> cmdCropSizeFile(TEXT("c"), TEXT("crop_size"),
-		TEXT("input image split size"), false,
-		128, TEXT("int"), cmd);
+	ValueArg<int> cmdCropSizeFile("c"), "crop_size"),
+		"input image split size"), false,
+		128, "int"), cmd);
 
-	ValueArg<int> cmdCropWidth(TEXT(""), TEXT("crop_w"),
-		TEXT("input image split size(width)"), false,
-		128, TEXT("int"), cmd);
+	ValueArg<int> cmdCropWidth(""), "crop_w"),
+		"input image split size(width)"), false,
+		128, "int"), cmd);
 
-	ValueArg<int> cmdCropHeight(TEXT(""), TEXT("crop_h"),
-		TEXT("input image split size(height)"), false,
-		128, TEXT("int"), cmd);
+	ValueArg<int> cmdCropHeight(""), "crop_h"),
+		"input image split size(height)"), false,
+		128, "int"), cmd);
 
-	ValueArg<int> cmdBatchSizeFile(TEXT("b"), TEXT("batch_size"),
-		TEXT("input batch size"), false,
-		1, TEXT("int"), cmd);
+	ValueArg<int> cmdBatchSizeFile("b"), "batch_size"),
+		"input batch size"), false,
+		1, "int"), cmd);
 
-	ValueArg<int> cmdGPUNoFile(TEXT(""), TEXT("gpu"),
-		TEXT("gpu device no"), false,
-		0, TEXT("int"), cmd);
+	ValueArg<int> cmdGPUNoFile(""), "gpu"),
+		"gpu device no"), false,
+		0, "int"), cmd);
 
 	std::vector<int> cmdTTAConstraintV;
 	cmdTTAConstraintV.push_back(0);
 	cmdTTAConstraintV.push_back(1);
 	ValuesConstraint<int> cmdTTAConstraint(cmdTTAConstraintV);
-	ValueArg<int> cmdTTALevel(TEXT("t"), TEXT("tta"), TEXT("8x slower and slightly high quality"),
+	ValueArg<int> cmdTTALevel("t"), "tta"), "8x slower and slightly high quality"),
 		false, 0, &cmdTTAConstraint, cmd);
 
 	// definition of command line argument : end
@@ -218,7 +218,7 @@ int main(int argc, char** argv)
 	}
 	catch (std::exception &e)
 	{
-		tprintf(TEXT("�G���[: ") CHAR_STR_FORMAT TEXT("\n"), e.what());
+		tprintf("�G���[: ") CHAR_STR_FORMAT "\n"), e.what());
 		return 1;
 	}
 
@@ -247,7 +247,7 @@ int main(int argc, char** argv)
 
 	tstring outputExt = cmdOutputFileExt.getValue();
 	if (outputExt.length() > 0 && outputExt[0] != TEXT('.'))
-		outputExt = TEXT(".") + outputExt;
+		outputExt = ".") + outputExt;
 
 	const std::string ModelName = Waifu2x::GetModelName(cmdModelPath.getValue());
 
@@ -269,37 +269,37 @@ int main(int argc, char** argv)
 	{
 		boost::filesystem::path output_path;
 
-		if (cmdOutputFile.getValue() == TEXT("(auto)"))
+		if (cmdOutputFile.getValue() == "(auto)"))
 		{
 			// �utest�v�Ȃ�utest_noise_scale(Level1)(x2.000000)�v�݂����Ȋ����ɂ���
 
-			tstring addstr(TEXT("("));
+			tstring addstr("("));
 			addstr += tModelName;
-			addstr += TEXT(")");
+			addstr += ")");
 
 			const tstring &mode = cmdMode.getValue();
 
-			addstr += TEXT("(") + mode + TEXT(")");
+			addstr += "(") + mode + ")");
 
-			if (mode.find(TEXT("noise")) != mode.npos || mode.find(TEXT("auto_scale")) != mode.npos)
-				addstr += TEXT("(Level") + to_tstring(cmdNRLevel.getValue()) + TEXT(")");
+			if (mode.find("noise")) != mode.npos || mode.find("auto_scale")) != mode.npos)
+				addstr += "(Level") + to_tstring(cmdNRLevel.getValue()) + ")");
 
 			if (use_tta)
-				addstr += TEXT("(tta)");
-			if (mode.find(TEXT("scale")) != mode.npos)
+				addstr += "(tta)");
+			if (mode.find("scale")) != mode.npos)
 			{
 				if(ScaleRatio)
-					addstr += TEXT("(x") + to_tstring(*ScaleRatio) + TEXT(")");
+					addstr += "(x") + to_tstring(*ScaleRatio) + ")");
 				else if (ScaleWidth && ScaleHeight)
-					addstr += TEXT("(") + to_tstring(*ScaleWidth) + TEXT("x") + to_tstring(*ScaleHeight) + TEXT(")");
+					addstr += "(") + to_tstring(*ScaleWidth) + "x") + to_tstring(*ScaleHeight) + ")");
 				else if (ScaleWidth)
-					addstr += TEXT("(width ") + to_tstring(*ScaleWidth) + TEXT(")");
+					addstr += "(width ") + to_tstring(*ScaleWidth) + ")");
 				else if (ScaleHeight)
-					addstr += TEXT("(height ") + to_tstring(*ScaleHeight) + TEXT(")");
+					addstr += "(height ") + to_tstring(*ScaleHeight) + ")");
 			}
 
 			if (cmdOutputDepth.getValue() != 8)
-				addstr += TEXT("(") + to_tstring(cmdOutputDepth.getValue()) + TEXT("bit)");
+				addstr += "(") + to_tstring(cmdOutputDepth.getValue()) + "bit)");
 
 			output_path = input_path.branch_path() / (path_to_tstring(input_path.stem()) + addstr);
 		}
@@ -312,7 +312,7 @@ int main(int argc, char** argv)
 		{
 			if (!boost::filesystem::create_directory(output_path))
 			{
-				tprintf(TEXT("�G���[: �o�̓t�H���_�u%s�v�̍쐬�Ɏ��s���܂���\n"), path_to_tstring(output_path).c_str());
+				tprintf("�G���[: �o�̓t�H���_�u%s�v�̍쐬�Ɏ��s���܂���\n"), path_to_tstring(output_path).c_str());
 				return 1;
 			}
 		}
@@ -324,14 +324,14 @@ int main(int argc, char** argv)
 			typedef boost::char_separator<TCHAR> char_separator;
 			typedef boost::tokenizer<char_separator, tstring::const_iterator, tstring> tokenizer;
 
-			char_separator sep(TEXT(":"), TEXT(""), boost::drop_empty_tokens);
+			char_separator sep(":"), ""), boost::drop_empty_tokens);
 			tokenizer tokens(cmdInputFileExt.getValue(), sep);
 
 			for (tokenizer::iterator tok_iter = tokens.begin(); tok_iter != tokens.end(); ++tok_iter)
 			{
 				tstring ext(*tok_iter);
 				std::transform(ext.begin(), ext.end(), ext.begin(), totlower);
-				extList.push_back(TEXT(".") + ext);
+				extList.push_back(".") + ext);
 			}
 		}
 
@@ -350,7 +350,7 @@ int main(int argc, char** argv)
 					{
 						if (!boost::filesystem::create_directory(out_absolute))
 						{
-							tprintf(TEXT("�G���[: �o�̓t�H���_�u%s�v�̍쐬�Ɏ��s���܂���\n"), path_to_tstring(out_absolute).c_str());
+							tprintf("�G���[: �o�̓t�H���_�u%s�v�̍쐬�Ɏ��s���܂���\n"), path_to_tstring(out_absolute).c_str());
 							return false;
 						}
 					}
@@ -381,7 +381,7 @@ int main(int argc, char** argv)
 	{
 		tstring outputFileName = cmdOutputFile.getValue();
 
-		if (outputFileName == TEXT("(auto)"))
+		if (outputFileName == "(auto)"))
 		{
 			// �umiku_small.png�v�Ȃ�umiku_small(noise_scale)(Level1)(x2.000000).png�v�݂����Ȋ����ɂ���
 
@@ -389,33 +389,33 @@ int main(int argc, char** argv)
 			const auto tailDot = outputFileName.find_last_of('.');
 			outputFileName.erase(tailDot, outputFileName.length());
 
-			tstring addstr(TEXT("("));
+			tstring addstr("("));
 			addstr += tModelName;
-			addstr += TEXT(")");
+			addstr += ")");
 
 			const tstring &mode = cmdMode.getValue();
 
-			addstr += TEXT("(") + mode + TEXT(")");
+			addstr += "(") + mode + ")");
 
-			if (mode.find(TEXT("noise")) != mode.npos || mode.find(TEXT("auto_scale")) != mode.npos)
-				addstr += TEXT("(Level") + to_tstring(cmdNRLevel.getValue()) + TEXT(")");
+			if (mode.find("noise")) != mode.npos || mode.find("auto_scale")) != mode.npos)
+				addstr += "(Level") + to_tstring(cmdNRLevel.getValue()) + ")");
 
 			if (use_tta)
-				addstr += TEXT("(tta)");
-			if (mode.find(TEXT("scale")) != mode.npos)
+				addstr += "(tta)");
+			if (mode.find("scale")) != mode.npos)
 			{
 				if (ScaleRatio)
-					addstr += TEXT("(x") + to_tstring(*ScaleRatio) + TEXT(")");
+					addstr += "(x") + to_tstring(*ScaleRatio) + ")");
 				else if (ScaleWidth && ScaleHeight)
-					addstr += TEXT("(") + to_tstring(*ScaleWidth) + TEXT("x") + to_tstring(*ScaleHeight) + TEXT(")");
+					addstr += "(") + to_tstring(*ScaleWidth) + "x") + to_tstring(*ScaleHeight) + ")");
 				else if (ScaleWidth)
-					addstr += TEXT("(width ") + to_tstring(*ScaleWidth) + TEXT(")");
+					addstr += "(width ") + to_tstring(*ScaleWidth) + ")");
 				else
-					addstr += TEXT("(height ") + to_tstring(*ScaleHeight) + TEXT(")");
+					addstr += "(height ") + to_tstring(*ScaleHeight) + ")");
 			}
 
 			if (cmdOutputDepth.getValue() != 8)
-				addstr += TEXT("(") + to_tstring(cmdOutputDepth.getValue()) + TEXT("bit)");
+				addstr += "(") + to_tstring(cmdOutputDepth.getValue()) + "bit)");
 
 			outputFileName += addstr + outputExt;
 		}
@@ -424,13 +424,13 @@ int main(int argc, char** argv)
 	}
 
 	Waifu2x::eWaifu2xModelType mode;
-	if (cmdMode.getValue() == TEXT("noise"))
+	if (cmdMode.getValue() == "noise"))
 		mode = Waifu2x::eWaifu2xModelTypeNoise;
-	else if (cmdMode.getValue() == TEXT("scale"))
+	else if (cmdMode.getValue() == "scale"))
 		mode = Waifu2x::eWaifu2xModelTypeScale;
-	else if (cmdMode.getValue() == TEXT("noise_scale"))
+	else if (cmdMode.getValue() == "noise_scale"))
 		mode = Waifu2x::eWaifu2xModelTypeNoiseScale;
-	else if (cmdMode.getValue() == TEXT("auto_scale"))
+	else if (cmdMode.getValue() == "auto_scale"))
 		mode = Waifu2x::eWaifu2xModelTypeAutoScale;
 
 	Waifu2x::eWaifu2xError ret;
@@ -447,16 +447,16 @@ int main(int argc, char** argv)
 	switch (ret)
 	{
 	case Waifu2x::eWaifu2xError_InvalidParameter:
-		tprintf(TEXT("eWaifu2xError_InvalidParameter\n"));
+		tprintf("eWaifu2xError_InvalidParameter\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedOpenModelFile:
-		tprintf(TEXT("eWaifu2xError_FailedOpenModelFile\n"));
+		tprintf("eWaifu2xError_FailedOpenModelFile\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedParseModelFile:
-		tprintf(TEXT("eWaifu2xError_FailedParseModelFile\n"));
+		tprintf("eWaifu2xError_FailedParseModelFile\n");
 		return 1;
 	case Waifu2x::eWaifu2xError_FailedConstructModel:
-		tprintf(TEXT("eWaifu2xError_FailedConstructModel\n"));
+		tprintf("eWaifu2xError_FailedConstructModel\n");
 		return 1;
 	}
 
@@ -471,16 +471,16 @@ int main(int argc, char** argv)
 			switch (ret)
 			{
 			case Waifu2x::eWaifu2xError_InvalidParameter:
-				tprintf(TEXT("eWaifu2xError_InvalidParameter\n"));
+				tprintf("eWaifu2xError_InvalidParameter\n");
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenInputFile:
-				tprintf(TEXT("eWaifu2xError_FailedOpenInputFile\n"), p.first.c_str());
+				tprintf("eWaifu2xError_FailedOpenInputFile\n", p.first.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedOpenOutputFile:
-				tprintf(TEXT("eWaifu2xError_FailedOpenOutputFile\n"), p.second.c_str());
+				tprintf("eWaifu2xError_FailedOpenOutputFile\n", p.second.c_str());
 				break;
 			case Waifu2x::eWaifu2xError_FailedProcessCaffe:
-				tprintf(TEXT("eWaifu2xError_FailedProcessCaffe\n"));
+				tprintf("eWaifu2xError_FailedProcessCaffe\n");
 				break;
 			}
 
@@ -490,11 +490,11 @@ int main(int argc, char** argv)
 
 	if (isError)
 	{
-		tprintf(TEXT("isError\n"));
+		tprintf("isError\n");
 		return 1;
 	}
 
-	tprintf(TEXT("ok\n"));
+	tprintf("ok\n");
 
 	Waifu2x::quit_liblary();
 
